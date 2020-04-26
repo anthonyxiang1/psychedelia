@@ -3,28 +3,84 @@
   
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     
-    
-    <title>Psychadelia</title>
+    <title>Psychedelia</title>
   </head>
   <body>
     <div class="main">
-        <h1 class="rainbow"> Psychadelia </h1> <br>
+      <a href="/" style="text-decoration: none;"><h1 class="rainbow"> Psychedelia </h1></a> <br>
 
-        <p> Psychadelic Style Transfer <br>
-          Inspired by Google Deep Dream </p>
-
-          <form method=post enctype=multipart/form-data>
-            <div class="form-group">
-              <input type=file name=file>
-              <input type=submit value=Upload>
-          </div>
-          </form>
+        <p> Psychedelic Style Transfer <br>
+          <small>Inspired by Google Deep Dream</small> </p>
     </div>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-4">
+          <h2 class="text-left">Content Image</h2>
+          <small>enter a valid image address</small>
+
+            <div class="custom-file">
+              <input type="text" class="form-control" id="contenturl" placeholder="Content URL">
+              <input id="demo" type=submit value="Demo URL" class="btn btn-sm btn-primary">
+              <br><br>
+
+              <input id="combine" type=submit value="Combine!" class="btn btn-success">
+            </div>
+        </div>
+        
+        <div  class="col-md-8">
+          <h2 class="text-left  mm-t">Draw a Style Image</h2>
+          <small>works best if the whole canvas is filled</small>
+          <!-- MAKES TABS
+          <div class="container">    
+            <ul class="nav nav-tabs"> 
+              <li class="active"><a data-toggle="tab" href="#draw">Draw style</a></li>
+              <li><a data-toggle="tab" href="#upload">Upload style</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div id="draw" class="tab-pane fade in active">
+                <h3>HOME</h3>
+              </div>
+              <div id="upload" class="tab-pane fade">
+                <h3>Menu 1</h3>
+              </div>
+            </div>
+          </div> -->
+          <canvas id="sheet" width="800" height="400"></canvas>
+          <input type="button" value="Button" class="btn btn-secondary" />
+          <input type="button" value="Button" class="btn btn-success" />
+          <input type="button" value="Button" class="btn btn-info" />
+          <input type="button" value="Button" class="btn btn-warning" />
+		      <input type="button" class="btn btn-danger" id="clear" value="clear"/>
+        </div>
+          
+
+      
+      </div>
+
+      <div class="row">
+        <div id="divfirst" class="col">
+          <img id="contentimg">
+        </div>
+        <div id="divsecond" class="col">
+          <img id="styleimg">
+        </div>
+      </div>
+    </div>
+    
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script type="text/javascript" src="../static/main.js"></script>
   </body>
 </html>
