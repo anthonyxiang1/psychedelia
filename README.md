@@ -23,10 +23,10 @@ Clicking submit will run the style transfer algorithm and output a side by side 
   - POST output data (target image and resized content image)
 
 ## Features
-- Input for links
-- Results page with analysis and summary
-- Option to translate the article and its summary
-- Option to translate the site
+- Input for links (content image)
+- Canvas for freehand drawing of style image
+- Option to choose image for style image
+- Results displayed
 
 ## Languages
 
@@ -43,12 +43,12 @@ Clicking submit will run the style transfer algorithm and output a side by side 
 
 ## Planning
 - Week One
-  - Day1
+  - Thursday April 9, 2020
     - Planning routes and functionalities
     - Create front end skeleton
-  - Day2
+  - Friday April 10, 2020
     - Finish Frontend
-    - 
+    - Form API connection
 - Week Two
   - Sunday April 26, 2020
     - Implement style transfer algorithm in PyTorch
