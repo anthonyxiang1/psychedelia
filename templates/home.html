@@ -12,6 +12,8 @@
     <title>Psychedelia</title>
   </head>
   <body>
+    <div id="loader"></div>
+
     <div class="main">
       <a href="/" style="text-decoration: none;"><h1 class="rainbow"> Psychedelia </h1></a> <br>
 
@@ -28,7 +30,7 @@
 
             <div class="custom-file">
               <input type="text" class="form-control" id="contenturl" placeholder="Content URL">
-              <input id="demo" type=submit value="Demo URL" class="btn btn-sm btn-primary">
+              <input id="demo" type=submit value="Demo" class="btn btn-sm btn-primary">
               <br><br>
 
               <input id="combine" type=submit value="Combine!" class="btn btn-success">
@@ -55,29 +57,41 @@
             </div>
           </div> -->
           <canvas id="sheet" width="800" height="400"></canvas>
-          <input type="button" value="Button" class="btn btn-secondary" />
-          <input type="button" value="Button" class="btn btn-success" />
-          <input type="button" value="Button" class="btn btn-info" />
-          <input type="button" value="Button" class="btn btn-warning" />
-		      <input type="button" class="btn btn-danger" id="clear" value="clear"/>
+
+          <div id="toggles" class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-light active">
+              <input type="radio" name="options" id="style1" autocomplete="off" checked> Rainbow
+            </label>
+            <label class="btn btn-light">
+              <input type="radio" name="options" id="style2" autocomplete="off"> Tile
+            </label>
+            <label class="btn btn-light">
+              <input type="radio" name="options" id="style3" autocomplete="off"> Trippy
+            </label>
+          </div>
+          
+          <input type="button" class="btn btn-danger" id="clear" value="clear"/>
+          <input id="psych" type="button" value="Psychedelic" class="btn btn-info" />
+          <input id="nightlight" type="button" value="Nightlight" class="btn btn-warning" />
+          <input id="lines" type="button" value="Lines" class="btn btn-secondary" />
         </div>
           
 
       
       </div>
+    </div>
 
+    <div class="result">
+      <h2 id="transfercomplete"></h2>
       <div class="row">
-        <div id="divfirst" class="col">
+        <div id="divfirst" class="col-md">
           <img id="contentimg">
         </div>
-        <div id="divsecond" class="col">
+        <div id="divsecond" class="col-md">
           <img id="styleimg">
         </div>
       </div>
     </div>
-    
-    
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

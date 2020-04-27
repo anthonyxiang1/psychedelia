@@ -25,16 +25,27 @@ $(document).ready(function() {
 
     //Mousemove
     $(canvas).on('mousemove', function(e) {
+
+        if ($('#style1').is(':checked')){
+            ctx.strokeStyle = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        }
+        if ($('#style2').is(':checked')){
+            var img = new Image();
+            img.src = 'static/style/tile.jpg'; 
+            ctx.strokeStyle = ctx.createPattern(img, "repeat");
+        }
+        if ($('#style3').is(':checked')){
+            var img = new Image();
+            img.src = 'static/style/trippy.jpg'; 
+            ctx.strokeStyle = ctx.createPattern(img, "repeat");
+        }
+
         mousex = parseInt(e.clientX-canvasx);
         mousey = parseInt(e.clientY-canvasy);
         if(mousedown) {
             ctx.beginPath();
             if(tooltype=='draw') {
                 ctx.globalCompositeOperation = 'source-over';
-                ctx.strokeStyle = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-                ctx.lineWidth = 10;
-            } else {
-                ctx.globalCompositeOperation = 'destination-out';
                 ctx.lineWidth = 10;
             }
             ctx.moveTo(last_mousex,last_mousey);
@@ -62,28 +73,82 @@ $(document).ready(function() {
         $(this).next('.custom-file-label').html(fileName);
     })
 
+    $('#psych').on('click', function() {
+        var img = new Image();
+        img.src = 'static/style/color.jpeg'; 
+        img.onload = function(){
+            var pattern = ctx.createPattern(img, "repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0,0,img.width,img.height)
+};
+    })
+
+    $('#lines').on('click', function() {
+        var img = new Image();
+        img.src = 'static/style/line.jpg'; 
+        img.onload = function(){
+            var pattern = ctx.createPattern(img, "repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0,0,800,400)
+};
+    })
+
+    $('#nightlight').on('click', function() {
+        var img = new Image();
+        img.src = 'static/style/nightlight.jpg'; 
+        img.onload = function(){
+            var pattern = ctx.createPattern(img, "repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0,0,img.width,img.height)
+};
+    })
+
     $("#demo").on('click', function () {
-        document.getElementById('contenturl').value = 'https://thumbs-prod.si-cdn.com/d4e3zqOM5KUq8m0m-AFVxuqa5ZM=/800x600/filters:no_upscale():focal(554x699:555x700)/https://public-media.si-cdn.com/filer/a4/04/a404c799-7118-459a-8de4-89e4a44b124f/img_1317.jpg'
+        document.getElementById('contenturl').value = 'https://thenypost.files.wordpress.com/2019/12/cat.jpg?quality=80&strip=all'
+        var img = new Image();
+        img.src = 'static/style/color.jpeg'; 
+        img.onload = function(){
+            var pattern = ctx.createPattern(img, "repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0,0,800,400)
+};
     });
 
     $("#combine").on('click', function () {
         var content = document.getElementById('contenturl').value
         var img  = canvas.toDataURL("image/png");
 
+        $('#loader').show();
+        
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:5000/transfer/',
+            url: '/transfer/',
             data: JSON.stringify({"content": content
                                     , "style": img}),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             success: function (result) {
-                $("#contentimg").attr("src", result['content']);
-                $('#styleimg').attr("src", result['style']);
+                // remove the images used from server
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:5000/reset/',
+                    data: JSON.stringify({"content_path": result['contentResize']
+                                            , "final_path": result['final']}),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                })
+
+                $('#loader').hide();
+
+                // update the divs to show results
+                $("h2#transfercomplete").html("Transfer Completed!")
+                $("#contentimg").attr("src", '.' + result['contentResize']);
+                $('#styleimg').attr("src", '.' + result['final']);
                 $("html, body").animate({ scrollTop: document.body.scrollHeight }, "slow");
 
             },
             error: function(result) {
+                console.log("error found!")
             }
         });
         
