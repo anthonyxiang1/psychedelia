@@ -26,7 +26,8 @@ Clicking submit will run the style transfer algorithm and output a side by side 
 - Input for links (content image)
 - Canvas for freehand drawing of style image
 - Option to choose image for style image
-- Results displayed
+- Results displays comparison
+- Demo available
 
 ## Languages
 
