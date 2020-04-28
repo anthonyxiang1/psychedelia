@@ -28,6 +28,7 @@ Clicking submit will run the style transfer algorithm and output a side by side 
 - Option to choose image for style image
 - Results displays comparison
 - Demo available
+- Adjustable number of steps during training
 
 ## Languages
 

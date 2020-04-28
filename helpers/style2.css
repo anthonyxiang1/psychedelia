@@ -39,6 +39,7 @@ canvas {
   border: 1px solid #cecece;
     box-shadow: 0px 0px 20px 0px #e6e6e6;
     border-radius: 5px;
+  width:100%;
   background-color: #fff;
 }
 
