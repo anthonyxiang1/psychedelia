@@ -128,6 +128,8 @@ $(document).ready(function () {
   });
 
   $("#combine").on("click", function () {
+    
+    
     //var steps = document.getElementById("steps").value;
     var content = document.getElementById("contenturl").value;
     var img = canvas.toDataURL("image/png");
