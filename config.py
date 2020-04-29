@@ -22,3 +22,12 @@ S3_LOCATION = 'http://{}.s3.amazonaws.com/'.format('psychedeliafinal')
 # opencv-python==4.0.0.21
 # pygame==1.9.6
 # twilio==6.30.0
+
+# xgboost==0.90
+# statsmodels==0.11.0
+# sklearn==0.0
+# SQLAlchemy==1.3.5
+# scikit-learn==0.20.2
+# pandas==1.0.0
+# scipy==1.2.0
+# catboost==0.21
