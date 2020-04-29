@@ -161,7 +161,8 @@ def img_upload():
     content_weight = 1 # alpha
     style_weight = 1e6 # beta
     lr = 0.8
-    steps = int(num_steps)
+    #steps = int(num_steps)
+    steps = 1
 
     # deep learning runs
     optimizer = optim.Adam([target], lr)  # changes the weights
