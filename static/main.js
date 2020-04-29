@@ -136,7 +136,7 @@ $(document).ready(function () {
 
     $.ajax({
       type: "POST",
-      url: "/transfer/",
+      url: "https://psychedelia.herokuapp.com/transfer/",
       data: JSON.stringify({ content: content, style: img, steps : steps }),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -144,7 +144,7 @@ $(document).ready(function () {
         // remove the images used from server
         $.ajax({
           type: "POST",
-          url: "http://localhost:5000/reset/",
+          url: "https://psychedelia.herokuapp.com/reset/",
           data: JSON.stringify({
             content_path: result["contentResize"],
             final_path: result["final"]
