@@ -128,7 +128,7 @@ $(document).ready(function () {
   });
 
   $("#combine").on("click", function () {
-    var steps = document.getElementById("steps").value;
+    //var steps = document.getElementById("steps").value;
     var content = document.getElementById("contenturl").value;
     var img = canvas.toDataURL("image/png");
 
@@ -137,7 +137,8 @@ $(document).ready(function () {
     $.ajax({
       type: "POST",
       url: "/transfer/",
-      data: JSON.stringify({ content: content, style: img, steps : steps }),
+      //data: JSON.stringify({ content: content, style: img, steps : steps }),
+      data: JSON.stringify({ content: content, style: img}),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function (result) {

@@ -121,7 +121,7 @@ def img_upload():
     response = request.get_json()
     content_url = response['content']  # user input url
     img_url = response['style']   # base64 url of canvas drawing
-    num_steps = response['steps']
+    #num_steps = response['steps']
     imgdata = base64.b64decode(img_url[22:])
 
     # making unique string for the style image and making a file
