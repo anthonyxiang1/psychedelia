@@ -110,26 +110,7 @@ def gram_matrix(tensor):
     gram = torch.mm(tensor, tensor.t())
     return gram
 
-### ROUTES
-
-@app.route('/')
-def main():
-    return render_template('home.html')
-
-@app.route('/transfer/', methods=['GET', 'POST'])
-def img_upload():
-    response = request.get_json()
-    content_url = response['content']  # user input url
-    img_url = response['style']   # base64 url of canvas drawing
-    #num_steps = response['steps']
-    imgdata = base64.b64decode(img_url[22:])
-
-    # making unique string for the style image and making a file
-    id = randomstr(10)
-    filename = './static/style/' + id + '.png'
-    with open(filename, 'wb') as f:
-        f.write(imgdata)
-
+def algo(content_url, filename, id):
     #### STYLE TRANSFER CODE GOES HERE
 
     vgg = models.vgg19(pretrained=True).features  # get the main layers (not the last 3 fully connected layers)
@@ -189,7 +170,7 @@ def img_upload():
 
         print('Step: ', ii)
         print('Total loss: ', total_loss.item())
-    
+
     os.remove(filename)  # get rid of the style image
     target_path = './static/results/result_' + id + '.png'
     plt.imsave(target_path, im_convert(target))
@@ -197,6 +178,30 @@ def img_upload():
     content_path = './static/content/content_' + id + '.png'
     plt.imsave(content_path, im_convert(content))
 
+    return target_path, content_path
+
+### ROUTES
+
+@app.route('/')
+def main():
+    return render_template('home.html')
+
+@app.route('/transfer/', methods=['GET', 'POST'])
+def img_upload():
+    response = request.get_json()
+    content_url = response['content']  # user input url
+    img_url = response['style']   # base64 url of canvas drawing
+    #num_steps = response['steps']
+    imgdata = base64.b64decode(img_url[22:])
+
+    # making unique string for the style image and making a file
+    id = randomstr(10)
+    filename = './static/style/' + id + '.png'
+    with open(filename, 'wb') as f:
+        f.write(imgdata)
+
+    target_path, content_path = algo(content_url, filename, id)
+    
     response['contentResize'] = content_path
     response['final'] = target_path
 
