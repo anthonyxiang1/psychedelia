@@ -4,8 +4,11 @@ Style transfer allows for the color/texture/shapes of one image (style image) to
 
 ## Demo
 
-![Alt text](demoImages/img1.JPG)
+### Start screen
+![Alt text](demoImages/img2.JPG)
 
+### Results
+![Results](demoImages/img3.JPG)
 
 ## Experience
 The user enters the webpage and sees inputs of content and style image for the style transfer. They can insert an image url from the web for the content image. For the style image, they can either draw one or use one of the three provided image styles.
