@@ -2,8 +2,9 @@
 Psychedelic style transfer with user input content image url and canvas drawing/photo import style image.
 Style transfer allows for the color/texture/shapes of one image (style image) to be placed onto the subjects/things of the content image.
 
-## Link
+## Demo
 
+![Alt text](demoImages/img1.JPG)
 
 
 ## Experience
